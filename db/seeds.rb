@@ -9,9 +9,19 @@
 User.destroy_all
 Customer.destroy_all
 Operator.destroy_all
+Device.destroy_all
 
 UMBRELLA   = Customer.create!(name: "Umbrella")
 NORTH_STAR = Customer.create!(name: "North Star")
+
+UMBRELLA.reload
+NORTH_STAR.reload
+
 User.create!(email: "alice@example.com", name: "Alice", customer_id: UMBRELLA.id, password: "password")
 User.create!(email: "bob@example.com",   name: "Bob",   customer_id: NORTH_STAR.id, password: "password")
 Operator.create!(email: "chuck@example.com", name: "Chuck", password: "password")
+
+Device.create!(name: "Umbrella Bore", tenant: UMBRELLA.db_role)
+Device.create!(name: "Umbrella Pump", tenant: UMBRELLA.db_role)
+Device.create!(name: "North Star Bore", tenant: NORTH_STAR.db_role)
+Device.create!(name: "North Star Pump", tenant: NORTH_STAR.db_role)

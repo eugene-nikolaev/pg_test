@@ -1,4 +1,6 @@
 PgTest::Application.routes.draw do
+  resources :devices
+
   resources :customers
 
   devise_for :operators
