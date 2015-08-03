@@ -14,8 +14,15 @@ class Customer < ActiveRecord::Base
     db_role = Customer.generate_db_role(entity)
     Customer.transaction do
       entity.update_attribute(:db_role, db_role)
-      ActiveRecord::Base.connection.execute("DROP ROLE IF EXISTS #{entity.db_role}")
-      ActiveRecord::Base.connection.execute("CREATE ROLE #{entity.db_role}")
+      role = db_role
+      ActiveRecord::Base.connection.execute(
+        %Q{
+          DROP ROLE IF EXISTS #{role};
+          CREATE ROLE #{role};
+          GRANT tenant TO #{role};
+        }
+      )
+
     end
   end
 

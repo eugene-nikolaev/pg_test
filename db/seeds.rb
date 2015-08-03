@@ -25,3 +25,9 @@ Device.create!(name: "Umbrella Bore", tenant: UMBRELLA.db_role)
 Device.create!(name: "Umbrella Pump", tenant: UMBRELLA.db_role)
 Device.create!(name: "North Star Bore", tenant: NORTH_STAR.db_role)
 Device.create!(name: "North Star Pump", tenant: NORTH_STAR.db_role)
+
+ActiveRecord::Base.connection.execute("SET ROLE #{UMBRELLA.db_role}")
+p Device.all.to_a
+
+ActiveRecord::Base.connection.execute("SET ROLE #{NORTH_STAR.db_role}")
+p Device.all.to_a
