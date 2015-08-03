@@ -4,8 +4,8 @@ development:
   database: strict_tenant_development
   pool: 5
   host: 'localhost'
-  username: 'wayne'
-  password: '123456'
+  username: 'user'
+  password: ''
 
 
 # Warning: The database defined as "test" will be erased and
@@ -17,5 +17,5 @@ test:
   database: strict_tenant_test
   pool: 5
   host: 'localhost'
-  username: 'wayne'
-  password: '123456'
+  username: 'user'
+  password: ''
